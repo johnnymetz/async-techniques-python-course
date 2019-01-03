@@ -12,6 +12,7 @@ BUFSIZE = 16384
 
 CONNECTION_COUNTER = count()
 
+
 async def echo_server(server_stream):
     # Assign each connection a unique number to make our debug prints easier
     # to understand when there are multiple simultaneous connections.
@@ -35,8 +36,10 @@ async def echo_server(server_stream):
         # that's what we want, but otherwise maybe not...
         print("echo_server {}: crashed: {!r}".format(ident, exc))
 
+
 async def main():
     await trio.serve_tcp(echo_server, PORT)
+
 
 # We could also just write 'trio.run(serve_tcp, echo_server, PORT)', but real
 # programs almost always end up doing other stuff too and then we'd have to go

@@ -37,7 +37,7 @@ def sync():
     timed_sleep(8)
     # Process http response #2
     timed_sleep(2)
-    return 'COMPLETE'
+    return "COMPLETE"
 
 
 def threaded():
@@ -53,7 +53,7 @@ def threaded():
     ]
     [t.start() for t in threads]
     [t.join() for t in threads]
-    return 'COMPLETE'
+    return "COMPLETE"
 
 
 def asynced():
@@ -66,7 +66,7 @@ def asynced():
     ]
     final_task = asyncio.gather(*tasks)
     loop.run_until_complete(final_task)
-    return 'COMPLETE'
+    return "COMPLETE"
 
 
 # def unsynced():
@@ -82,21 +82,21 @@ def asynced():
 
 async def trioed():
     async with trio.open_nursery() as nursery:
-        nursery.start_soon(trio_sleep, 8, name='Http request 1')
-        nursery.start_soon(trio_sleep, 5, name='Http process response 1')
-        nursery.start_soon(trio_sleep, 8, name='Http request 2')
-        nursery.start_soon(trio_sleep, 2, name='Http process response 2')
-    return 'COMPLETE'
+        nursery.start_soon(trio_sleep, 8, name="Http request 1")
+        nursery.start_soon(trio_sleep, 5, name="Http process response 1")
+        nursery.start_soon(trio_sleep, 8, name="Http request 2")
+        nursery.start_soon(trio_sleep, 2, name="Http process response 2")
+    return "COMPLETE"
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     start = time.time()
 
     # result = sync()            # 23 sec
     # result = threaded()        # 8 sec
-    result = asynced()         # 8 sec
+    result = asynced()  # 8 sec
     # result = unsynced()        # 8 sec
     # result = trio.run(trioed)  # 8 sec
 
     print(result)
-    print('Time taken in seconds -', time.time() - start)
+    print("Time taken in seconds -", time.time() - start)

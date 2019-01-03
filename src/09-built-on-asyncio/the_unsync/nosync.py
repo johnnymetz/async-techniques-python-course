@@ -31,7 +31,7 @@ def compute_some():
     """CPU-based operation"""
     print("Computing...")
     for _ in range(1, 10_000_000):
-        math.sqrt(25 ** 25 + .01)
+        math.sqrt(25 ** 25 + 0.01)
 
 
 def download_some():
@@ -40,7 +40,7 @@ def download_some():
     otherwise use threading
     """
     print("Downloading...")
-    url = 'https://talkpython.fm/episodes/show/174/coming-into-python-from-another-industry-part-2'
+    url = "https://talkpython.fm/episodes/show/174/coming-into-python-from-another-industry-part-2"
     resp = requests.get(url)
     resp.raise_for_status()
 
@@ -52,7 +52,7 @@ def download_some():
 def download_some_more():
     """same as above"""
     print("Downloading more ...")
-    url = 'https://pythonbytes.fm/episodes/show/92/will-your-python-be-compiled'
+    url = "https://pythonbytes.fm/episodes/show/92/will-your-python-be-compiled"
     resp = requests.get(url)
     resp.raise_for_status()
 
@@ -65,8 +65,8 @@ def wait_some():
     """asyncio operation"""
     print("Waiting...")
     for _ in range(1, 1000):
-        time.sleep(.001)
+        time.sleep(0.001)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

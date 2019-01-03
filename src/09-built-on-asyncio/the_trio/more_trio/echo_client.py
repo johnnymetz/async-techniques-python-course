@@ -10,6 +10,7 @@ PORT = 12345
 # but shouldn't be too big or too small.
 BUFSIZE = 16384
 
+
 async def sender(client_stream):
     print("sender: started!")
     while True:
@@ -17,6 +18,7 @@ async def sender(client_stream):
         print("sender: sending {!r}".format(data))
         await client_stream.send_all(data)
         await trio.sleep(1)
+
 
 async def receiver(client_stream):
     print("receiver: started!")
@@ -26,6 +28,7 @@ async def receiver(client_stream):
         if not data:
             print("receiver: connection closed")
             sys.exit()
+
 
 async def parent():
     print("parent: connecting to 127.0.0.1:{}".format(PORT))
@@ -37,5 +40,6 @@ async def parent():
 
             print("parent: spawning receiver...")
             nursery.start_soon(receiver, client_stream)
+
 
 trio.run(parent)
