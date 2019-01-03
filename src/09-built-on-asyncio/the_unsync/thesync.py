@@ -1,3 +1,7 @@
+"""
+unsync module
+"""
+
 from unsync import unsync
 import asyncio
 import datetime
@@ -32,6 +36,7 @@ def main():
 
 @unsync(cpu_bound=True)
 def compute_some():
+    """cpu_bound regular method: runs on multiprocessing"""
     print("Computing...")
     for _ in range(1, 10_000_000):
         math.sqrt(25 ** 25 + .01)
@@ -39,6 +44,7 @@ def compute_some():
 
 @unsync()
 async def download_some():
+    """async method: runs on an asyncio loop"""
     print("Downloading...")
     url = 'https://talkpython.fm/episodes/show/174/coming-into-python-from-another-industry-part-2'
     async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(ssl=False)) as session:
@@ -52,6 +58,7 @@ async def download_some():
 
 @unsync()
 def download_some_more():
+    """regular method: runs on threads"""
     print("Downloading more ...")
     url = 'https://pythonbytes.fm/episodes/show/92/will-your-python-be-compiled'
     resp = requests.get(url)

@@ -6,8 +6,13 @@ from typing import List
 
 
 class Account:
+
+    num = 1
+
     def __init__(self, balance=0):
         self.balance = balance
+        self.name = f'FUND {self.num}'
+        Account.num += 1
 
 
 def main():
@@ -20,9 +25,9 @@ def main():
     jobs = [
         Thread(target=do_bank_stuff, args=(accounts, total)),
         Thread(target=do_bank_stuff, args=(accounts, total)),
-        Thread(target=do_bank_stuff, args=(accounts, total)),
-        Thread(target=do_bank_stuff, args=(accounts, total)),
-        Thread(target=do_bank_stuff, args=(accounts, total)),
+        # Thread(target=do_bank_stuff, args=(accounts, total)),
+        # Thread(target=do_bank_stuff, args=(accounts, total)),
+        # Thread(target=do_bank_stuff, args=(accounts, total)),
     ]
 
     t0 = datetime.datetime.now()
@@ -37,7 +42,7 @@ def main():
 
 
 def do_bank_stuff(accounts, total):
-    for _ in range(1, 10000):
+    for _ in range(1, 10):
         a1, a2 = get_two_accounts(accounts)
         amount = random.randint(1, 100)
         do_transfer(a1, a2, amount)
@@ -56,6 +61,7 @@ def create_accounts() -> List[Account]:
 
 
 def do_transfer(from_account: Account, to_account: Account, amount: int):
+    print(f'Transferring ${amount:,} from {from_account.name} to {to_account.name}')
     if from_account.balance < amount:
         return
 

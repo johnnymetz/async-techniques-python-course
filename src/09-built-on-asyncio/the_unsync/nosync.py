@@ -1,3 +1,7 @@
+"""
+No parallelism at all
+"""
+
 import datetime
 import math
 import time
@@ -24,12 +28,17 @@ def main():
 
 
 def compute_some():
+    """CPU-based operation"""
     print("Computing...")
     for _ in range(1, 10_000_000):
         math.sqrt(25 ** 25 + .01)
 
 
 def download_some():
+    """
+    asyncio operation if we an async requests module (e.g. aiohttp)
+    otherwise use threading
+    """
     print("Downloading...")
     url = 'https://talkpython.fm/episodes/show/174/coming-into-python-from-another-industry-part-2'
     resp = requests.get(url)
@@ -41,6 +50,7 @@ def download_some():
 
 
 def download_some_more():
+    """same as above"""
     print("Downloading more ...")
     url = 'https://pythonbytes.fm/episodes/show/92/will-your-python-be-compiled'
     resp = requests.get(url)
@@ -52,6 +62,7 @@ def download_some_more():
 
 
 def wait_some():
+    """asyncio operation"""
     print("Waiting...")
     for _ in range(1, 1000):
         time.sleep(.001)
