@@ -13,9 +13,9 @@ def main():
 
     data = asyncio.Queue()
 
-    task1 = loop.create_task(generate_data(20, data))
-    task2 = loop.create_task(generate_data(20, data))
-    task3 = loop.create_task(process_data(40, data))
+    task1 = loop.create_task(generate_data(10, data))
+    task2 = loop.create_task(generate_data(10, data))
+    task3 = loop.create_task(process_data(20, data))
 
     final_task = asyncio.gather(task1, task2, task3)
     loop.run_until_complete(final_task)
